@@ -23,16 +23,20 @@ jumping to the center."
 (defun line-change ()
   (unless (seq-some #'funcall tw-inhibit-centering-when)
   (recenter)))
-  
+
 (define-minor-mode typewriter-mode
-  "A minor mode to simulate typewriter writing and scrolling."
-  :lighter: " ⋙"
+  "Makes the cursor stay vertically in a defined
+position (usually centered)."
+  :init-value nil
+  :lighter " ☯"
   :keymap
   '(
     ([wheel-up] . previous-line)
     ([wheel-down] . next-line))
-  (cond (typewriter-mode (add-hook 'post-command-hook 'line-change))
-	(t (remove-hook 'post-command-hook 'line-change)))
-  )
+  (cond
+   (typewriter-mode
+    (add-hook 'post-command-hook 'line-change t t))
+   (t
+    (remove-hook 'post-command-hook 'line-change t))))
 
 (provide 'typewriter-mode)
