@@ -26,7 +26,9 @@ jumping to the center."
 
 (define-minor-mode typewriter-mode
   "Makes the cursor stay vertically in a defined
-position (usually centered)."
+position (usually centered). Remaps mouse wheel
+to C-n and C-p which makes scrolling through visual
+lines a breeze."
   :init-value nil
   :lighter " ☯"
   :keymap
